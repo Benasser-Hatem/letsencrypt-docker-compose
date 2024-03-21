@@ -3,6 +3,7 @@ version: "3"
 services:
   cli:
     build: ./cli
+    container_name: certboot-cli
     image: evgeniy-khyst/letsencrypt-docker-compose-cli
     user: ${CURRENT_USER}
     group_add:
@@ -19,6 +20,7 @@ services:
 
   nginx:
     build: ./nginx
+    container_name: nginx
     image: evgeniy-khyst/nginx
     environment:
       - DRY_RUN
@@ -43,6 +45,7 @@ services:
 
   certbot:
     build: ./certbot
+    container_name: certboot
     image: evgeniy-khyst/certbot
     environment:
       - DRY_RUN
@@ -67,6 +70,7 @@ services:
 
   cron:
     build: ./cron
+    container_name: certboot-cron
     image: evgeniy-khyst/cron
     environment:
       - COMPOSE_PROJECT_NAME
